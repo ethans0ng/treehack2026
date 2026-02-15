@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stanford Police · HGN Edge Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <header class="hero">
+      <p class="eyebrow">Stanford Police · Sobriety Operations</p>
+      <h1>HGN Edge Dashboard</h1>
+      <p class="hero-copy">
+        Real-time operational view of edge-collected HGN sessions.
+      </p>
+    </header>
+
+    <section class="card status-card">
+      <div class="row-head">
+        <div>
+          <h2>Live session status</h2>
+          <p class="muted">Local inference stream with near-real-time polling.</p>
+        </div>
+        <span id="live-badge" class="live-badge live"><span class="dot"></span>Monitoring</span>
+      </div>
+
+      <div id="latest-result" class="latest-result">No test yet.</div>
+      <div id="latest-warning" class="status-text status-neutral">Awaiting first sync.</div>
+
+      <div class="meta-row">
+        <span id="last-updated">Not synced yet.</span>
+        <span id="session-count" class="muted">0 sessions loaded</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row-head">
+        <h2>Session history</h2>
+        <div class="row-controls">
+          <label for="limit">Show</label>
+          <select id="limit">
+            <option value="10">10</option>
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+          </select>
+
+          <label for="poll-rate">Poll every</label>
+          <select id="poll-rate">
+            <option value="1000">1s</option>
+            <option value="2000" selected>2s</option>
+            <option value="3000">3s</option>
+            <option value="5000">5s</option>
+            <option value="8000">8s</option>
+          </select>
+
+          <button id="refresh-btn">Refresh now</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Subject</th>
+              <th>SP</th>
+              <th>Prior 45°</th>
+              <th>Max dev</th>
+              <th>Vert</th>
+              <th>Head warning</th>
+            </tr>
+          </thead>
+          <tbody id="sessions-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
